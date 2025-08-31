@@ -249,7 +249,11 @@ async def uart_terminal(name = "Pybricks Hub"):
 
 if __name__ == "__main__":
     try:
-        asyncio.run(uart_terminal())
+        if len(sys.argv) > 1:
+            name = sys.argv[1]
+            asyncio.run(uart_terminal(name))
+        else:
+            asyncio.run(uart_terminal())
     except KeyboardInterrupt:
         # When interrupted before repl is started; often during scanning.
         # After the repl is started then all CTRL-C chars
